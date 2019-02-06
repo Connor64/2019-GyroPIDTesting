@@ -55,7 +55,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    SmartDashboard.putNumber("Gyro Value", Robot.m_oi.getGyro().getAngle());
+    SmartDashboard.putNumber("Gyro Value", gyro.getGyro().getAngle());
   }
 
   /**
@@ -106,8 +106,6 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
-
-    rightMotor.setSpeed(MoveToAngle.get)
   }
 
   @Override
@@ -128,7 +126,7 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
     if (Robot.m_oi.getXbox().getRawButton(1) == true) {
-      Robot.m_oi.getGyro().reset();
+      gyro.getGyro().reset();
     } else {
       
     }

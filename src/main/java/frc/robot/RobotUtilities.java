@@ -76,7 +76,7 @@ public class RobotUtilities {
 //		talon.configRemoteFeedbackFilter(deviceID, remoteSensorSource, remoteOrdinal, timeoutMs)
 		talon.configReverseSoftLimitEnable(false, CONFIG_TIMEOUT);
 		talon.configReverseSoftLimitThreshold(0, CONFIG_TIMEOUT);
-		talon.configSelectedFeedbackSensor(FeedbackDevice.None, 0, CONFIG_TIMEOUT);
+		// talon.configSelectedFeedbackSensor(FeedbackDevice.None, 0, CONFIG_TIMEOUT);
 //		talon.configSensorTerm(sensorTerm, feedbackDevice, timeoutMs)
 //		talon.overrideLimitSwitchesEnable(false);
 //		talon.overrideSoftLimitsEnable(false);

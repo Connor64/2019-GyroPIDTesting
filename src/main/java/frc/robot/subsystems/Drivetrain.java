@@ -27,7 +27,7 @@ public class Drivetrain extends Subsystem {
     rightPrimary = new TalonSRX(RobotMap.DRIVE_RIGHT_PRIMARY);
     rightSecondary = new TalonSRX(RobotMap.DRIVE_RIGHT_SECONDARY);
     leftPrimary = new TalonSRX(RobotMap.DRIVE_LEFT_PRIMARY);
-    leftSecondary = new TalonSRX(RobotMap.DRIVE_LEFT_SECONDARY)
+    leftSecondary = new TalonSRX(RobotMap.DRIVE_LEFT_SECONDARY);
 
     rightSecondary.follow(rightPrimary);
     leftSecondary.follow(leftPrimary);

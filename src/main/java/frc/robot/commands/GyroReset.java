@@ -22,7 +22,7 @@ public class GyroReset extends Command {
   @Override
   protected void initialize() {
     // initalCounts = Robot.dt.getEncPosition();
-    Robot.m_oi.getGyro().reset();
+    Robot.gyro.getGyro().reset();
   }
 
   // Called repeatedly when this Command is scheduled to run
