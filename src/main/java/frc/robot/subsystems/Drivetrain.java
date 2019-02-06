@@ -48,17 +48,20 @@ public class Drivetrain extends Subsystem {
     leftPrimary.set(ControlMode.PercentOutput, power);
   }
 
-  public void setPower(double power) {
-    setRightPowers(power);
-    setLeftPowers(power);
+  public void setPower(double rightPower, double leftPower) {
+    setRightPowers(rightPower);
+    setLeftPowers(leftPower);
   }
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
   @Override
-  
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+  }
+
+  public void stop() {
+    setPower(0, 0);
   }
 }

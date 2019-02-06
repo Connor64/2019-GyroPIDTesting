@@ -26,13 +26,16 @@ public class MoveToAngle extends PIDCommand {
 
     @Override
     protected void usePIDOutput(double output) {
-        Robot.drivetrain.setRightPowers(output);
-        Robot.drivetrain.setLeftPowers(-output);
+        Robot.drivetrain.setPower(output, -output);
     }
 
     @Override
     protected boolean isFinished() {
-        return false;
+        return (Robot.gyro.getGyro().getAngle() >= 40);
     }
 
+    @Override
+    protected void end() {
+        Robot.drivetrain.stop();
+    }
 }
