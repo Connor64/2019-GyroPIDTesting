@@ -17,6 +17,7 @@ import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Gyro;
 import frc.robot.commands.GyroReset;
+import frc.robot.commands.MoveToAngle;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -43,6 +44,11 @@ public class Robot extends TimedRobot {
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
     SmartDashboard.putData("Reset Gyro", new GyroReset());
+    SmartDashboard.putNumber("P", 0);
+    SmartDashboard.putNumber("I", 0);
+    SmartDashboard.putNumber("D", 0);
+
+
   }
 
   /**
@@ -56,6 +62,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     SmartDashboard.putNumber("Gyro Value", gyro.getGyro().getAngle());
+
   }
 
   /**
@@ -85,8 +92,15 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_chooser.getSelected();
+    // m_autonomousCommand = m_chooser.getSelected();
+     GyroReset reset = new GyroReset();
+     reset.start();
+     double P = SmartDashboard.getNumber("P", 0);
+     double I = SmartDashboard.getNumber("I", 0);
+     double D = SmartDashboard.getNumber("D", 0);
 
+     MoveToAngle var = new MoveToAngle(100, P, I, D);
+     var.start();
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
      * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -117,6 +131,8 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+
+    drivetrain.setPower(0.5, 0.5);
   }
 
   /**

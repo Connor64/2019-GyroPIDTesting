@@ -31,6 +31,8 @@ public class Drivetrain extends Subsystem {
 
     rightSecondary.follow(rightPrimary);
     leftSecondary.follow(leftPrimary);
+
+    rightPrimary.setInverted(true);
   }
 
   public static Drivetrain getInstance() {
@@ -45,7 +47,7 @@ public class Drivetrain extends Subsystem {
   }
 
   public void setLeftPowers(double power) {
-    leftPrimary.set(ControlMode.PercentOutput, power);
+    leftPrimary.set(ControlMode.PercentOutput, 0.9*power);
   }
 
   public void setPower(double rightPower, double leftPower) {

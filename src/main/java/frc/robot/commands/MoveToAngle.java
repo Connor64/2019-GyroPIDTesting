@@ -1,15 +1,19 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.PIDCommand;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
 public class MoveToAngle extends PIDCommand {
-    private static final double P = 1.0, I = 0.0, D = 0.0;
+    private double p, i, d;
+    private double angle; 
+    private int c = 0;
     // fine tune these values
 
-    public MoveToAngle(double angle) {
-        super(P, I, D);
-
+    public MoveToAngle(double angle, double p, double i, double d) {
+        super(p, i, d);
+        this.angle = angle;
+        getPIDController().setAbsoluteTolerance(.5);
         /*
          * these values (P, I, D) are used in PIDCommand: 
          * public PIDCommand(String name, double p, double i, double d) { 
@@ -19,6 +23,11 @@ public class MoveToAngle extends PIDCommand {
          */
     }
 
+   
+    @Override 
+    protected void initialize() {
+        setSetpoint(angle);
+    }
     @Override
     protected double returnPIDInput() {
         return Robot.gyro.getGyro().getAngle();
@@ -26,12 +35,27 @@ public class MoveToAngle extends PIDCommand {
 
     @Override
     protected void usePIDOutput(double output) {
-        Robot.drivetrain.setPower(output, -output);
+        if(output > 1) {
+            output = 1;
+        } else if (output < -1) {
+            output = -1;
+        }
+        Robot.drivetrain.setPower(output, output);
+    }
+
+    @Override
+    protected void execute() {
+    	if (getPIDController().onTarget()) {
+    		c++;
+    	} else {
+    		c = 0;
+        }
+         
     }
 
     @Override
     protected boolean isFinished() {
-        return (Robot.gyro.getGyro().getAngle() >= 40);
+        return c > 3;
     }
 
     @Override
