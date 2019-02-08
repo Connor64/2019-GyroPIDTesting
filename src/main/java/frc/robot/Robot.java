@@ -95,11 +95,12 @@ public class Robot extends TimedRobot {
     // m_autonomousCommand = m_chooser.getSelected();
      GyroReset reset = new GyroReset();
      reset.start();
-     double P = SmartDashboard.getNumber("P", 0);
-     double I = SmartDashboard.getNumber("I", 0);
-     double D = SmartDashboard.getNumber("D", 0);
+     double P = 0.02;//SmartDashboard.getNumber("P", 0);
+     double I = 0;//SmartDashboard.getNumber("I", 0);
+     double D = 0.1;//SmartDashboard.getNumber("D", 0);
+     //P:D approx. = 1:5
 
-     MoveToAngle var = new MoveToAngle(100, P, I, D);
+     MoveToAngle var = new MoveToAngle(270, P, I, D);
      var.start();
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
