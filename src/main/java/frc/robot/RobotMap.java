@@ -16,7 +16,7 @@ package frc.robot;
 public class RobotMap {
   public static final int DRIVE_LEFT_PRIMARY = 25;
 	public static final int DRIVE_LEFT_SECONDARY = 24;
-	public static final int DRIVE_RIGHT_PRIMARY = 10;
+	public static final int DRIVE_RIGHT_PRIMARY = 12;
 	public static final int DRIVE_RIGHT_SECONDARY = 11;
 	public static final int INTAKE_LEFT = 14;
 	public static final int INTAKE_RIGHT = 15;
